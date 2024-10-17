@@ -9,7 +9,12 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 5000; // Default to port 5000 if not set
 
 // Middleware--------------------------------------
-app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(cors({
+  origin: 'https://djprimetime.onrender.com', // Allow requests only from this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+  credentials: true // If you're using cookies or authentication tokens
+}));
+
 app.use(express.json());
 
 // MongoDB Connection---------------------------------------------------------------------------
